@@ -1,0 +1,49 @@
+<form [formGroup]="personForm" (ngSubmit) ="save()">
+  Person Id: <input type="text" formControlName="id"/> <br/>
+    FirstName: <input type="text" formControlName="firstName"/> <br/>
+    LastName:<input type="text" formControlName="lastName"/> <br/>
+
+<div formGroupName="address">
+    Address Id: <input type="text" formControlName="id"/> <br/>
+    HouseNo:<input type="text" formControlName="houseNo"/> <br/>
+    StreetName:<input type="text" formControlName="streetName"/> <br/>
+</div>
+    <input type="submit" value="submit"/>
+</form>
+
+<div *ngIf="persons.length !=0">
+    <table border='1'>
+        <tr>
+            <th> ID</th>
+            <th> First Name</th>
+            <th> Last Name</th>
+            <th> Address</th>
+            <th> Read</th>
+            <th> Delete</th>
+        </tr>
+        <tr *ngFor= "let person of persons">
+            <td> {{person.id }}</td>
+            <td> {{person.firstName}}</td>
+            <td> {{person.lastName}}</td>
+            <td> {{person.address.id}},
+              {{person.address.houseNo}},
+              {{person.address.streetName}}</td>
+            
+            <td>
+                <a href="#" (click) = "read(person.id)">Read {{person.firstName}}</a>
+            </td> 
+          
+            <td>
+                <a href="#" (click) = "delete(person.id)"> Delete {{person.firstName}}</a>
+            </td> 
+        </tr>
+    </table>
+</div>
+<div *ngIf="person">
+    {{person.id}}<br/>
+    {{person.firstName}}<br/>
+    {{person.lastName}}<br/>
+    {{person.address.id}}<br/>
+    {{person.address.houseNo}}<br/>
+    {{person.address.streetName}}<br/>
+</div>
